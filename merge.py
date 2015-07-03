@@ -3,6 +3,11 @@ import suds_marketo
 import urllib3
 from flask import Flask, request, json
 
+import clearbit
+from slacker import Slacker
+
+clearbit.key = '1bd77da89e73be5b12278a80d2fc3ff2'
+slack = Slacker('xoxp-4477022291-4457488502-7201309238-0be375')
 
 from flask.ext import restful
 from flask.ext.jsonpify import jsonify
@@ -11,27 +16,19 @@ app = Flask(__name__)
 api = restful.Api(app)
 
 class merge(restful.Resource):
-    def get(self, ID):
-        #Establish Connection to OpenTable Marketo Endpoint
-        client = suds_marketo.Client(soap_endpoint='',
-                                     user_id='6282468SDF7530E8A604131D1',
-                                     encryption_key='53351376551375325D53300EE88AA66124EF4113492BE69SSD')
+    def get(self, email):
+        # grab NewSignUp from request
+        NewSignUp = str(email)
+        # get the leads from Marketo
+        NewSignUp = clearbit.Person.find(email='alex@alexmaccaw.com', stream=True)
+        if NewSignUp != None:
+          print "Name: " + person['name']['fullName']
 
-        NewContactFromSFDC = str(ID)
-        #get the leads from Marketo
-        lead = client.get_lead_IDNUM(NewContactFromSFDC)
-        for i in range(0,len(lead.leadRecordList.leadRecord[0].leadAttributeList[0])):
-            if 'mKTOLeadID' == lead.leadRecordList.leadRecord[0].leadAttributeList[0][i].attrName:
-                originalmarketoid = lead.leadRecordList.leadRecord[0].leadAttributeList[0][i].attrValue
-        try:
-            #Try and merge leads if they both exist in marketo.  One will be the new SFDC contact
-            #One will be the marketo lead that was a lead before it was an SFDC contact.
-            client.merge_leads(NewContactFromSFDC,originalmarketoid)
-        except:
-            pass
+        # Send a message to #newcustomer channel
+        slack.chat.post_message('#newsignups', 'New Customer Test from Python app!')
         return None
 
-api.add_resource(merge, '/<int:ID>')
+api.add_resource(merge, '/<str:email>')
 
 if __name__ == '__main__':
     #app.run(debug=True)
