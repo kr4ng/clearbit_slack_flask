@@ -9,7 +9,5 @@ gunicorn==18.0
 itsdangerous==0.24
 pytz==2014.3
 six==1.6.1
-suds==0.4
--e git://github.com/kr4ng/suds-marketo.git@aa3b0803600b219a5cad9acf3a361895750eb927#egg=suds_marketo-master
 urllib3==1.8.2
 wsgiref==0.1.2
