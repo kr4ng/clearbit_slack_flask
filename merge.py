@@ -34,10 +34,7 @@ class merge(restful.Resource):
                 newfield['value'] = str(value)
                 newfield['short'] = True
                 fields.append(newfield)   
-        try: 
-            avatar = NewSignUp['avatar']
-        except:
-            avatar = 'http://assets-s3.usmagazine.com/uploads/assets/articles/85688-success-kid-meme-kidney-sick-father/1429037342_success-kid-meme-lg.jpg'
+        avatar = 'http://assets-s3.usmagazine.com/uploads/assets/articles/85688-success-kid-meme-kidney-sick-father/1429037342_success-kid-meme-lg.jpg'
         if NewSignUp != None:
             NewSignUp = {
                         "FullName": NewSignUp['name']['givenName'] + ' ' + NewSignUp['name']['familyName'],
@@ -57,7 +54,7 @@ class merge(restful.Resource):
                             "author_link": NewSignUp['site'],
                             "author_icon": avatar,
 
-                            "fields": fields
+                            "fields": fields,
                         }
                     ]
 
