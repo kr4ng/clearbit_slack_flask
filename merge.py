@@ -5,13 +5,15 @@ from flask import Flask, request, json
 import clearbit
 from slacker import Slacker
 
-from settings import *
-
 from flask.ext import restful
 from flask.ext.jsonpify import jsonify
 
 app = Flask(__name__)
 api = restful.Api(app)
+
+clearbit.key = os.environ.get('CLEARBIT')
+SLACK = os.environ.get('SLACK')
+slack = Slacker(SLACK)
 
 class merge(restful.Resource):
     def get(self, email):
