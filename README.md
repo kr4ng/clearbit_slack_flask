@@ -1,1 +1,3 @@
-This is the clearbit slack pushbutton install rest api integration.
+# Clearbit + Slack + Flask
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)

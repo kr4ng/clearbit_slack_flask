@@ -1,0 +1,6 @@
+{
+  "name": "Clearbit Flask Slack rest API",
+  "description": "A small api to post new customer data from clearbit into slack.",
+  "repository": "https://github.com/kr4ng/clearbit_slack_flask",
+  "keywords": ["clearbit", "flask", "slack"]
+}
