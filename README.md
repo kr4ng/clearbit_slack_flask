@@ -4,6 +4,8 @@
 
 ## This is an api for alerting your team when your app gains a new customer.
 
+![sample of what you would see](https://www.dropbox.com/s/4kte9bc1ubfal07/Screenshot%202015-07-05%2018.03.44.png?dl=0)
+
 ## Installation Instructions
 
 ```
