@@ -11,6 +11,7 @@ from flask.ext.jsonpify import jsonify
 app = Flask(__name__)
 api = restful.Api(app)
 
+# set slack and clearbit from environ
 clearbit.key = os.environ.get('CLEARBIT')
 SLACK = os.environ.get('SLACK')
 slack = Slacker(SLACK)
