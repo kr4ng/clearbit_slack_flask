@@ -31,7 +31,7 @@ class postUserToSlack(restful.Resource):
         for attribute, value in NewSignUp.iteritems():
             newfield = {}
             if isinstance(value, dict) and 'handle' in value:
-                if value['handle'] !== None:
+                if value['handle'] != None:
                     for a, v in value.items():
                         newfield = {}
                         newfield['title'] = a
@@ -53,7 +53,7 @@ class postUserToSlack(restful.Resource):
                         "email": email,
                         "site": NewSignUp['site']
                         }
-             attachments = [
+            attachments = [
                             {
                                 "fallback": "We got a new user!",
 
